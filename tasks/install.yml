@@ -4,11 +4,7 @@
 - name: install
   ansible.builtin.apt:
     cache_valid_time: 86400
-    name: "{{ desktop_packages
+    name: "{{ (desktop_packages |default([]))
               + (('mate' in desktop_types) |ternary(desktop_mate_packages,[]))
               + (desktop_rdp |ternary(desktop_rdp_packages,[])) }}"
     state: present
-
-- name: install mate
-  ansible.builtin.command:
-    cmd: tasksel install ubuntu-mate-core
