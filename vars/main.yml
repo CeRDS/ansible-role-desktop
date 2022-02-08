@@ -1,4 +1,4 @@
 ---
 # vars file for desktop
-desktop_mate_packages: [ "ubuntu-mate-core", "ubuntu-mate-desktop" ]
-desktop_rdp_packages: [ "xrdp" ]
+desktop_mate_packages: ["ubuntu-mate-core", "ubuntu-mate-desktop"]
+desktop_rdp_packages: ["xrdp"]
