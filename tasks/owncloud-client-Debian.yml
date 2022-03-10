@@ -1,0 +1,24 @@
+---
+# roles/desktop/tasks/owncloud-client.yml
+# https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/download/
+#
+# expires: 2023-01-17
+- name: owncloud client apt-key
+  ansible.builtin.apt_key:
+    id: 06D7EADE708A40FA136EB4540700205DFD41A71A
+    state: present
+    url: https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/{{ ansible_distribution }}_{{ ansible_distribution_version }}/Release.key
+
+- name: owncloud client repo
+  ansible.builtin.apt_repository:
+    filename: owncloud
+    repo: deb https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/{{ ansible_distribution }}_{{ ansible_distribution_version }}/ /
+    state: present
+    update_cache: true
+
+- name: owncloud client install
+  ansible.builtin.apt:
+    cache_valid_time: 86400
+    name: owncloud-client
+    state: present
+    update_cache: true

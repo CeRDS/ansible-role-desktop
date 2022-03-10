@@ -1,0 +1,39 @@
+---
+# roles/desktop/tasks/configure-gnome.yml
+# https://help.gnome.org/admin/system-admin-guide/3.8/dconf-custom-defaults.html.en
+# https://help.gnome.org/admin/system-admin-guide/stable/dconf-lockdown.html.en
+#
+- name: gnome settings directory
+  ansible.builtin.file:
+    mode: 0755
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/dconf/db/local.d
+    - /etc/dconf/db/local.d/locks
+
+- name: gnome profile
+  ansible.builtin.copy:
+    content: |
+      user-db:user
+      system-db:local
+    dest: /etc/dconf/profile/user
+
+- name: 00_ansible-desktop-defaults
+  ansible.builtin.template:
+    dest: /etc/dconf/db/local.d/00_ansible-desktop-defaults
+    lstrip_blocks: true
+    mode: 0644
+    src: gnome-custom-defaults.j2
+  notify:
+    - dconf update
+
+- name: 00_ansible-desktop-defaults locks
+  ansible.builtin.copy:
+    content: |
+      {% for lock_path in desktop_gnome_setting_locks %}
+      {{ lock_path }}
+      {% endfor %}
+    dest: /etc/dconf/db/local.d/locks/00_ansible-desktop-defaults
+  notify:
+    - dconf update

@@ -1,0 +1,9 @@
+---
+# roles/desktop/tasks/install-conky.yml
+#
+- name: conky install
+  ansible.builtin.apt:
+    cache_valid_time: 86400
+    name: "{{ desktop_conky_packages |default(conky_defaults.packages) }}"
+    state: present
+    update_cache: true

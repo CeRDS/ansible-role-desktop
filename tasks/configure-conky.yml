@@ -1,0 +1,10 @@
+---
+# roles/desktop/tasks/configure-conky.yml
+#
+- name: conky config.
+  ansible.builtin.template:
+    dest: /etc/conky/conky.conf
+    lstrip_blocks: true
+    mode: 0644
+    src: conky.conf.j2
+

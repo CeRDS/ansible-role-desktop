@@ -1,0 +1,20 @@
+---
+# roles/desktop/tasks/eclipse.yml
+# TODO: add XDG application and menu items as required
+# Workaround. Placing these into the shared volume with CVL deployments
+# Req. /usr/local NFS issue resolution
+#
+- name: eclipse make prefix dir.
+  ansible.builtin.file:
+    mode: 0755
+    path: "{{ desktop_eclipse_prefix }}"
+    state: directory
+
+- name: eclipse install
+  ansible.builtin.unarchive:
+    creates: "{{ desktop_eclipse_prefix }}/eclipse"
+    dest: "{{ desktop_eclipse_prefix }}"
+    group: root
+    owner: root
+    remote_src: true
+    src: "{{ desktop_eclipse_url }}"

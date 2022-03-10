@@ -1,4 +1,38 @@
 ---
-# defaults file for desktop
+# roles/desktop/defaults/main.yml
+#
+desktop_debs: []
+
+desktop_gnome_nfs_user_home: false
+desktop_gnome_settings: []
+desktop_gnome_setting_locks: []
+
+# http://conky.sourceforge.net/config_settings.html
+desktop_conky_enabled: false
+desktop_conky_autostart: true
+desktop_conky_default_interface: "{{ ansible_default_ipv4.interface }}"
+desktop_conky_alignment: top_right
+desktop_conky_config_extra: ""
+desktop_conky_default_color: white
+desktop_conky_default_outline_color: white
+desktop_conky_default_shade_color: white
+desktop_conky_double_buffer: true
+desktop_conky_own_window_argb_visual: true
+desktop_conky_own_window_hints: undecorated,below,sticky,skip_taskbar,skip_pager
+desktop_conky_own_window_transparent: true
+desktop_conky_own_window_type: normal
+desktop_conky_update_interval: 5.0
+desktop_conky_file_systems: []
+desktop_conky_text_extra: ""
+
+desktop_eclipse_enabled: false
+desktop_eclipse_release: 2021-12
+desktop_eclipse_url: https://mirror.aarnet.edu.au/pub/eclipse/technology/epp/downloads/release/{{ desktop_eclipse_release }}/R/eclipse-parallel-{{ desktop_eclipse_release }}-R-linux-gtk-x86_64.tar.gz
+desktop_eclipse_prefix: /opt/eclipse_{{ desktop_eclipse_release }}
+
+desktop_owncloud_client_enabled: false
 desktop_packages: []
-desktop_rdp: false
+desktop_rdp_enabled: false
+desktop_target_default: graphical.target
+
+desktop_XDG_DATA_DIRS: []

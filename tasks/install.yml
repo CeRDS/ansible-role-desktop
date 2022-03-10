@@ -6,5 +6,14 @@
     cache_valid_time: 86400
     name: "{{ (desktop_packages |default([]))
               + (('mate' in desktop_types) |ternary(desktop_mate_packages,[]))
-              + (desktop_rdp |ternary(desktop_rdp_packages,[])) }}"
+              + (desktop_rdp_enabled |ternary(desktop_rdp_packages,[])) }}"
     state: present
+    update_cache: true
+
+- name: install debs
+  ansible.builtin.apt:
+    deb: "{{ deb_url }}"
+    state: present
+  with_items: "{{ desktop_debs }}"
+  loop_control:
+    loop_var: deb_url

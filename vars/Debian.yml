@@ -1,0 +1,4 @@
+systemd_lib: /lib/systemd
+
+conky_defaults:
+  packages: [conky-std]

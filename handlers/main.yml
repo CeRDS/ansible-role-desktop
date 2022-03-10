@@ -1,2 +1,20 @@
 ---
 # handlers file for desktop
+#
+- name: systemd reload
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: systemd isolate target
+  ansible.builtin.command:
+    cmd: /usr/bin/systemctl isolate {{ desktop_target_default }}
+
+- name: dconf update
+  ansible.builtin.command:
+    cmd: dconf update
+
+#- name: restart rdp
+#  ansible.builtin.systemd:
+#    enabled: {{ desktop_rdp_enabled }}
+#    name: xrdp.service
+#    state: {{ desktop_rdp_enabled |ternary("restarted","stopped") }}
