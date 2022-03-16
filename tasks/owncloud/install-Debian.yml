@@ -1,5 +1,5 @@
 ---
-# roles/desktop/tasks/owncloud-client.yml
+# roles/desktop/tasks/owncloud/install-Debian.yml
 # https://download.owncloud.com/desktop/ownCloud/stable/latest/linux/download/
 #
 # expires: 2023-01-17

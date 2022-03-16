@@ -1,5 +1,5 @@
 ---
-# roles/desktop/tasks/eclipse.yml
+# roles/desktop/tasks/eclipse/install.yml
 # TODO: add XDG application and menu items as required
 # Workaround. Placing these into the shared volume with CVL deployments
 # Req. /usr/local NFS issue resolution

@@ -8,6 +8,7 @@ desktop_gnome_settings: []
 desktop_gnome_setting_locks: []
 
 # http://conky.sourceforge.net/config_settings.html
+# http://conky.sourceforge.net/variables.html
 desktop_conky_enabled: false
 desktop_conky_autostart: true
 desktop_conky_default_interface: "{{ ansible_default_ipv4.interface }}"

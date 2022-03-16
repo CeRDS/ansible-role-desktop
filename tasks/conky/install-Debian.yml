@@ -1,5 +1,5 @@
 ---
-# roles/desktop/tasks/install-conky.yml
+# roles/desktop/tasks/conky/install-Debian.yml
 #
 - name: conky install
   ansible.builtin.apt:

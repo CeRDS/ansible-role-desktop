@@ -24,36 +24,24 @@
     - systemd reload
     - systemd isolate target
 
-# https://help.gnome.org/admin/system-admin-guide/stable/dconf-nfs-home.html.en
-- name: gnome settings over nfs
-  ansible.builtin.lineinfile:
-    insertbefore: BOF
-    line: service-db:keyfile/user
-    path: /etc/dconf/profile/user
-    state: present
-  when:
-    - desktop_gnome_nfs_user_home
-
 - name: gnome desktop config.
-  ansible.builtin.include_tasks: configure-gnome.yml
-  when:
-    - desktop_gnome_settings |length >0
+  ansible.builtin.include_tasks: gnome/configure.yml
 
-- name: install eclipse
-  ansible.builtin.include_tasks: install-eclipse-ide.yml
+- name: eclipse install
+  ansible.builtin.include_tasks: eclipse/install.yml
   when:
     - desktop_eclipse_enabled
 
-- name: install owncloud client
-  ansible.builtin.include_tasks: owncloud-client-{{ ansible_os_family }}.yml
+- name: owncloud client install
+  ansible.builtin.include_tasks: owncloud/install-{{ ansible_os_family }}.yml
   when:
     - desktop_owncloud_client_enabled
 
 - name: conky installation
   block:
     - name: conky install
-      ansible.builtin.include_tasks: install-conky-{{ ansible_os_family }}.yml
+      ansible.builtin.include_tasks: conky/install-{{ ansible_os_family }}.yml
     - name: conky config.
-      ansible.builtin.include_tasks: configure-conky.yml
+      ansible.builtin.include_tasks: conky/configure.yml
   when:
     - desktop_conky_enabled

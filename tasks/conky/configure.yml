@@ -1,5 +1,5 @@
 ---
-# roles/desktop/tasks/configure-conky.yml
+# roles/desktop/tasks/conky/configure.yml
 #
 - name: conky config.
   ansible.builtin.template:
