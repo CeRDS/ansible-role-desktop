@@ -12,6 +12,7 @@
   with_items:
     - /etc/dconf/db/local.d
     - /etc/dconf/db/local.d/locks
+    - /etc/dconf/profile
 
 - name: gnome profile
   ansible.builtin.copy:

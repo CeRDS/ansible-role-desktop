@@ -1,0 +1,11 @@
+---
+# roles/desktop/tasks/xdg/configure.yml
+#
+- name: XDG_DATA upload
+  ansible.builtin.copy:
+    dest: "{{ desktop_xdg_data_dir }}"
+    src: "{{ desktop_xdg_data }}/"
+  when:
+    - desktop_xdg_data|length >0
+
+

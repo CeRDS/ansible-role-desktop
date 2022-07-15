@@ -24,6 +24,9 @@
     - systemd reload
     - systemd isolate target
 
+- name: XDG config.
+  ansible.builtin.include_tasks: xdg/configure.yml
+
 - name: gnome desktop config.
   ansible.builtin.include_tasks: gnome/configure.yml
 
