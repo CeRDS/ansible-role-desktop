@@ -1,0 +1,15 @@
+---
+# https://apptainer.org/docs/user/main/build_env.html
+- name: apptainer build environment
+  ansible.builtin.copy:
+    content: |
+      {% if desktop_apptainer_cachedir %}
+      APPTAINER_CACHEDIR={{ desktop_apptainer_cachedir }}
+      {% endif %}
+      {% if desktop_apptainer_tmpdir %}
+      APPTAINER_TMPDIR={{ desktop_apptainer_tmpdir }}
+      {% endif %}
+    dest: /etc/profile.d/apptainer_build_environment.sh
+    group: root
+    mode: 0644
+    owner: root

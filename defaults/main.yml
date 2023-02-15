@@ -1,6 +1,11 @@
 ---
 # roles/desktop/defaults/main.yml
 #
+desktop_apptainer_cachedir: ""
+desktop_apptainer_enabled: false
+desktop_apptainer_tmpdir: ""
+desktop_apptainer_version: "1.1.5"
+
 desktop_debs: []
 
 desktop_gnome_nfs_user_home: false
@@ -35,5 +40,12 @@ desktop_owncloud_client_enabled: false
 desktop_packages: []
 desktop_rdp_enabled: false
 desktop_target_default: graphical.target
+
+desktop_turbovnc_enabled: false
+desktop_turbovnc_version: "3.0.1"
+desktop_turbovnc_url: https://sourceforge.net/projects/turbovnc/files/{{desktop_turbovnc_version}}/turbovnc_{{desktop_turbovnc_version}}_amd64.deb/download
+desktop_turbovnc_sha1: 93034685f483154325566c1e30101b4102f80ef2
+
+desktop_virutalgl_url: https://ixpeering.dl.sourceforge.net/project/virtualgl/3.0.90%20%283.1beta1%29/virtualgl_3.0.90_amd64.deb
 
 desktop_XDG_DATA_DIRS: []

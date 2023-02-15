@@ -1,0 +1,19 @@
+---
+# https://apptainer.org/docs/admin/main/installation.html
+# https://apptainer.org/docs/user/main/build_env.html
+#
+- name: apptainer install pre-req
+  ansible.builtin.apt:
+    cache_valid_time: 86400
+    name:
+      - uidmap
+      - squashfuse
+      - fuse2fs
+      - fuse-overlayfs
+    state: present
+    update_cache: true
+
+- name: apptainer install
+  ansible.builtin.apt:
+    deb: https://github.com/apptainer/apptainer/releases/download/v{{ desktop_apptainer_version }}/apptainer_{{ desktop_apptainer_version }}_{{ dpkg_arch }}.deb
+    state: present

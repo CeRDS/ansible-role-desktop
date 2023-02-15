@@ -11,7 +11,7 @@
 
 - name: dconf update
   ansible.builtin.command:
-    cmd: dconf update
+    cmd: /usr/bin/dconf update
 
 #- name: restart rdp
 #  ansible.builtin.systemd:

@@ -1,0 +1,13 @@
+---
+# https://turbovnc.org/Documentation/Documentation
+#
+- name: turbovnc download
+  ansible.builtin.get_url:
+    checksum: "sha1:{{desktop_turbovnc_sha1}}"
+    dest: /scratch/turbovnc_{{desktop_turbovnc_version}}_amd64.deb
+    url: "{{desktop_turbovnc_url}}"
+
+- name: turbovnc install
+  ansible.builtin.apt:
+    deb: /scratch/turbovnc_{{desktop_turbovnc_version}}_amd64.deb
+    state: present

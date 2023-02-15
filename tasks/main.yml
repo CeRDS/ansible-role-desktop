@@ -9,6 +9,10 @@
     - "{{ ansible_os_family }}.yml"
     - default.yml
 
+- name: set host facts
+  ansible.builtin.set_fact:
+    dpkg_arch: "{{ 'amd64' if ansible_architecture == 'x86_64' else ansible_architecture }}"
+
 - name: install
   ansible.builtin.include_tasks: "{{ item }}"
   with_first_found:
@@ -30,6 +34,14 @@
 - name: gnome desktop config.
   ansible.builtin.include_tasks: gnome/configure.yml
 
+- name: apptainer
+  block:
+    - name: apptainer install
+      ansible.builtin.include_tasks: apptainer/install-{{ ansible_os_family }}.yml
+    - name: apptainer configuration
+      ansible.builtin.include_tasks: apptainer/configure.yml
+  when: [desktop_apptainer_enabled]
+
 - name: eclipse install
   ansible.builtin.include_tasks: eclipse/install.yml
   when:
@@ -48,3 +60,7 @@
       ansible.builtin.include_tasks: conky/configure.yml
   when:
     - desktop_conky_enabled
+
+#- name: turbovnc install
+#  when:
+#    - desktop_turbovnc_enabled
