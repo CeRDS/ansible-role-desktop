@@ -1,6 +1,6 @@
 ---
 # virtualgl/install.yml 
 #
-- name: Download VirtualGL files
-  ansible.builtin.
-    url: "{{desktop_virutalgl_url}}"
+#- name: Download VirtualGL files
+#  ansible.builtin.
+#    url: "{{desktop_virutalgl_url}}"
